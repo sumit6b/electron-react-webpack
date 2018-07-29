@@ -1,20 +1,14 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const webpack = require('webpack');
 
 module.exports = {
-  entry: { app: './src/js/index.js', print: './src/js/print.js'},
+  entry: { mac: path.resolve(path.join('src', 'js', 'desktop', 'index.js'))},
   plugins:[
-    new CleanWebpackPlugin(['dist']),
-    new HtmlWebpackPlugin({title: 'Development', hash: true, template: './index.html'}),
-    new webpack.HotModuleReplacementPlugin()
+    new CleanWebpackPlugin(['dist-mac']),
   ],
   devtool: 'inline-source-map',
-  devServer: {
-    contentBase: './dist',
-    hot: true
-  },
+  target: 'electron-main',
   module: {
     rules: [
       {test: /\.css$/, use: ['style-loader', 'css-loader']},
@@ -25,8 +19,7 @@ module.exports = {
     ]
   },
   output: {
-    filename: '[name].bundle.js',
-    path: path.resolve(__dirname, 'dist')
+    filename: 'mac.bundle.js',
+    path: path.resolve(__dirname, 'dist-mac')
   }
-
 }

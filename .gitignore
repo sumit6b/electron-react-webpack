@@ -8,6 +8,7 @@ _SpecRunner.html
 __benchmarks__
 build/
 dist/
+dist-mac/
 remote-repo/
 coverage/
 flow-coverage/
